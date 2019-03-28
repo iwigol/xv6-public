@@ -1,0 +1,14 @@
+language: c
+script: make && make fs.img
+deploy:
+  provider: releases
+  api_key:
+    secure: f3KzR5AusS99q2nMbFuUevI8QQ2QdN8iiLIetAIGD0xKda0M6kfHa0bjvTr5ebOcRVUBQWJq3U3oFT4S+q0JkatGmKboK/6zRGcnPu4W6Af7kUcL+eK+3gDPEraxK4H0HBFAp+s+XD6d2PaGZRJ7kRVPWXBShcmC4uETkK3NSnZq8X2/ofgHwzs3qdVnSl50CDPaXC70LeQlY/AQfrXYHhllxChWpnyh/ubNr/DiFCWia1mUge4v/RTYHjHr9JceF4syTCbb0RjhdO0ofniLztCTCy1lpiRynZVEwJePvyqVTcMi6+8VE5lG3gThZPSe/mUShBLd3Ekc+6uYd0LlLYPGyuMtgiinwTjnjZzaLrpTTK/3U5jmnBI0A3GAyPVZ5Yjlyk2g+4aJguHouaykO6DHqvY6PwBkcacO5LmUh3wUuJ+HDUq1wfrwAAjgw9d/kB+38rBpT3tyxqYsgMjMWE7j/3/5WO3wV3VsNYtywrRuTh0+yyI8Se6u5izDwfjPiC3TsLawzWhDO0Qn8tDo8rQjKQrCPW5V6rYk6G9HuJMQ9bi6tapcCtvZOHvxsI+UtNOwUnNfLqAg9Tqg7GToiXvIH/KqJFud2q2IskuT8/iwzzWUnI7la6G7oF9UfWy4wTBN/cltDepUhVkZGm7VZ+YxPI5bpSl1n0IHjmDH+9M=
+  file: 
+    -fs.img
+    -xv6.img
+  skip_cleanup: true
+  on:
+    repo: iwigol/xv6-public
+    branch: project_1
+    tags: true
