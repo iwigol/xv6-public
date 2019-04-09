@@ -536,7 +536,7 @@ int getprocs(void){
 
   int contador=0;
   struct proc *p;
-  char *state;
+  
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == RUNNING)
       contador++;
