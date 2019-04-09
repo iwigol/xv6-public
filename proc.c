@@ -532,3 +532,21 @@ procdump(void)
     cprintf("\n");
   }
 }
+int getprocs(void){
+  static char *states[] = {
+  [UNUSED]    "unused",
+  [EMBRYO]    "embryo",
+  [SLEEPING]  "sleep ",
+  [RUNNABLE]  "runble",
+  [RUNNING]   "run   ",
+  [ZOMBIE]    "zombie"
+  };
+  int contador=0;
+  struct proc *p;
+  char *state;
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->state == RUNNING)
+      contador++;
+    }
+    return contador;
+}
