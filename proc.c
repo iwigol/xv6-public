@@ -533,14 +533,7 @@ procdump(void)
   }
 }
 int getprocs(void){
-  static char *states[] = {
-  [UNUSED]    "unused",
-  [EMBRYO]    "embryo",
-  [SLEEPING]  "sleep ",
-  [RUNNABLE]  "runble",
-  [RUNNING]   "run   ",
-  [ZOMBIE]    "zombie"
-  };
+
   int contador=0;
   struct proc *p;
   char *state;
