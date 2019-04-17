@@ -541,5 +541,5 @@ int getprocs(void){
     if(p->state == RUNNING)
       contador++;
     }
-  exit();
+  return contador;
 }
