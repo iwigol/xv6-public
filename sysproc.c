@@ -45,8 +45,7 @@ sys_getpid(void)
 int
 sys_getprocs(void)
 {
-return getprocs();
-  
+return getprocs();  
 }
 
 int
