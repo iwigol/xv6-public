@@ -319,21 +319,52 @@ wait(void)
 //  - swtch to start running that process
 //  - eventually that process transfers control
 //      via swtch back to the scheduler.
+static
+unsigned long
+lcg_rand(unsigned long a)
+{
+  unsigned long b=279470273,c=4294967291;
+  return(a*b)%c;
+}
+int lotteryTotal(void){
+  struct proc *p;
+  int total_tickets=0;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->state == RUNNABLE){
+        total_tickets +=p->tickets;
+      }
+  }
+  return total_tickets;
+}
 void
 scheduler(void)
 {
+  int total_tickets,runval=0;
+  int ticket;
+
   struct proc *p;
   struct cpu *c = mycpu();
   c->proc = 0;
   
   for(;;){
+    runval++;
     // Enable interrupts on this processor.
     sti();
 
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
+    total_tickets=lotteryTotal();
+    if (total_tickets>0){
+      ticket=lcg_rand(runval);
+      if (total_tickets<ticket){
+        ticket%=total_tickets;
+      }
+    }
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-      if(p->state != RUNNABLE)
+      if(p->state == RUNNABLE){
+        ticket-=p->tickets;
+      }
+      if(p->state != RUNNABLE||ticket>=0)
         continue;
 
       // Switch to chosen process.  It is the process's job
