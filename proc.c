@@ -325,7 +325,7 @@ lcg_rand(unsigned long a)
 {
   unsigned long b,c;
   b=279470273;
-  c=4294967291;
+  c=4294967290;
   return(a*b)%c;
 }
 int lotteryTotal(void){
