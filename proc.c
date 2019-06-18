@@ -320,13 +320,10 @@ wait(void)
 //  - eventually that process transfers control
 //      via swtch back to the scheduler.
 static
-unsigned long
-lcg_rand(unsigned long a)
+unsigned long X=1;
+lcg_rand(unsigned int a)
 {
-  unsigned long b,c;
-  b=279470273;
-  c=4294967290;
-  return(a*b)%c;
+  return (a * 279470273UL) % 4294967291UL;
 }
 int lotteryTotal(void){
   struct proc *p;
