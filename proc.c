@@ -320,7 +320,7 @@ wait(void)
 //  - eventually that process transfers control
 //      via swtch back to the scheduler.
 static
-unsigned long X=1;
+unsigned long;
 lcg_rand(unsigned int a)
 {
   return (a * 279470273UL) % 4294967291UL;
