@@ -354,7 +354,7 @@ scheduler(void)
     acquire(&ptable.lock);
     total_tickets=lotteryTotal();
     if (total_tickets>0){
-      ticket=lcg_rand(runval);
+      ticket=lcg_rand(lcg_rand(runval*ticks));
       if (total_tickets<ticket){
         ticket%=total_tickets;
       }
