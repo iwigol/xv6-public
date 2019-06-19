@@ -369,6 +369,7 @@ scheduler(void)
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
+      cprintf("PROCESS %d IS WITH THE CPU NOW.\n", p->pid);
       c->proc = p;
       switchuvm(p);
       p->state = RUNNING;
@@ -571,6 +572,7 @@ int getprocs(void){
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == RUNNING)
       contador++;
+      cprintf("proceso %d .\n", p->pid);
     }
   return contador;
 }
